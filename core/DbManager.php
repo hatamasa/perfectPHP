@@ -32,7 +32,7 @@ class DbManager
 	public function getConnection($name = null)
 	{
 		if(is_null($name)){
-			return corrent($this->connections);
+			return current($this->connections);
 		}
 
 		return $this->connections[$name];

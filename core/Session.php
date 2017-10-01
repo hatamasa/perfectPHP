@@ -41,15 +41,14 @@ class Session
 	public function regenerate($destroy = true)
 	{
 		if(!self::$sessionIdRegenerated){
-			session_regenerated_id($destroy);
-
+			session_regenerate_id($destroy);
 			self::$sessionIdRegenerated = true;
 		}
 	}
 
 	public function setAuthenticated($bool)
 	{
-		$this->set('_authenticated', (bool)$booll);
+		$this->set('_authenticated', (bool)$bool);
 
 		$this->regenerate();
 	}

@@ -33,13 +33,12 @@ class UserRepository extends DbRepository
 
 	public function isUniqueUserName($user_name)
 	{
-		$sql = "SELECT COUNT(id) as COUNT FROM user WHERE user_name = :use_name";
+		$sql = "SELECT COUNT(id) as COUNT FROM user WHERE user_name = :user_name";
 
 		$row = $this->fetch($sql, array(':user_name' => $user_name));
-		if($row['count'] === '0'){
+		if($row['COUNT'] === '0'){
 			return true;
 		}
-
 		return false;
 	}
 
