@@ -57,7 +57,7 @@ abstract class Application
 
 	public function getResponse()
 	{
-		return $this->request;
+		return $this->response;
 	}
 
 	public function getSession()
@@ -132,7 +132,7 @@ abstract class Application
 		if(!class_exists($controller_class)){
 			$controller_file = $this->getControllerDir() . '/' . $controller_class . '.php';
 
-			if(!is_redable($controller_file)){
+			if(!is_readable($controller_file)){
 				return false;
 			}else{
 				require_once $controller_file;
@@ -150,7 +150,7 @@ abstract class Application
 	{
 		$this->response->setStatusCode(404, 'Not Found');
 		$message = $this->isDebugMode() ? $e->getMessage() : 'Page not found.';
-		$message = htmlspecialchars($message, ENT_QUPTES, 'UTF-8');
+		$message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
 		$this->response->setContent(<<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

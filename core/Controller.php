@@ -97,6 +97,10 @@ abstract class Controller
 
 		$token = sha1($form_name . session_id() . microtime());
 		$tokens[] = $token;
+
+		$this->session->set($key, $tokens);
+
+		return $token;
 	}
 
 	protected function checkCsrfToken($form_name, $token)
@@ -110,6 +114,8 @@ abstract class Controller
 
 			return true;
 		}
+
+		return false;
 	}
 
 
