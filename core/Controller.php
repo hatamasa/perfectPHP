@@ -32,7 +32,7 @@ abstract class Controller
 		}
 
 		if($this->needsAuthentication($action) && !$this->session->isAuthenticated()){
-			throw new UnauthenticatedActionException();
+			throw new UnauthorizedActionException();
 		}
 
 		$content = $this->$action_method($params);

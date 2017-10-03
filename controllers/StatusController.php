@@ -2,6 +2,7 @@
 
 class StatusController extends Controller
 {
+	protected $auth_actions = array('index', 'post');
 
 	public function indexAction()
 	{
@@ -61,7 +62,7 @@ class StatusController extends Controller
 			$this->forward404();
 		}
 
-		$statuses = $this->db_manager->get('Status')->fetchAllByUserId($params['id']);
+		$statuses = $this->db_manager->get('Status')->fetchAllByUserId($user['id']);
 
 		return $this->render(array(
 				'user' => $user,
