@@ -11,6 +11,15 @@ class Request
 		return false;
 	}
 
+	public function isGet()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			return true;
+		}
+
+		return false;
+	}
+
 	public  function getGet($name, $default = null)
 	{
 		if(isset($_GET[$name])){

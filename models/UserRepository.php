@@ -31,6 +31,13 @@ class UserRepository extends DbRepository
 		return $this->fetch($sql, array(':user_name' => $user_name));
 	}
 
+	public function fetchAllByUserNamePartial($user_name)
+	{
+		$sql = "SELECT * FROM user WHERE user_name like :user_name";
+
+		return $this->fetchAll($sql, array(':user_name' => sprintf('%%%s%%', addcslashes($user_name, '\_%'))));
+	}
+
 	public function isUniqueUserName($user_name)
 	{
 		$sql = "SELECT COUNT(id) as count FROM user WHERE user_name = :user_name";
